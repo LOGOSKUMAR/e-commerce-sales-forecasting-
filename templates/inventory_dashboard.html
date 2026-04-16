@@ -1,0 +1,433 @@
+<style>
+:root {
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f9fafb;
+  --color-background-tertiary: #f3f4f6;
+  --color-border-tertiary: #e5e7eb;
+  --color-border-primary: #d1d5db;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --font-sans: 'Segoe UI', sans-serif;
+  --font-mono: monospace;
+}
+</style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.app{background:var(--color-background-tertiary);min-height:100vh;padding:0}
+.sidebar{width:220px;background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;padding:1.5rem 0;position:fixed;top:0;left:0;height:100vh}
+.logo{padding:0 1.25rem 1.5rem;font-size:18px;font-weight:500;color:var(--color-text-primary);display:flex;align-items:center;gap:8px}
+.logo-icon{width:32px;height:32px;background:#4f46e5;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.nav-section{padding:0 0.75rem;margin-bottom:0.5rem}
+.nav-label{font-size:11px;color:var(--color-text-tertiary);padding:0 0.5rem;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:14px;color:var(--color-text-secondary);transition:all 0.15s}
+.nav-item:hover{background:var(--color-background-secondary);color:var(--color-text-primary)}
+.nav-item.active{background:#eef2ff;color:#4f46e5}
+.nav-icon{width:18px;height:18px;opacity:0.7}
+.main{margin-left:220px;padding:1.5rem}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.page-title{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.page-sub{font-size:13px;color:var(--color-text-secondary);margin-top:2px}
+.btn{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.15s}
+.btn-primary{background:#4f46e5;color:#fff}
+.btn-primary:hover{background:#4338ca}
+.btn-ghost{background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-tertiary)}
+.btn-ghost:hover{background:var(--color-background-primary)}
+.btn-danger{background:#fee2e2;color:#991b1b}
+.btn-danger:hover{background:#fecaca}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.5rem}
+.stat-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem 1.25rem}
+.stat-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:6px}
+.stat-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.stat-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:20px;margin-top:6px}
+.badge-up{background:#dcfce7;color:#166534}
+.badge-down{background:#fee2e2;color:#991b1b}
+.section{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;margin-bottom:1.5rem}
+.section-header{padding:1rem 1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between}
+.section-title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.toolbar{display:flex;align-items:center;gap:8px}
+.search-wrap{position:relative}
+.search-wrap input{padding:6px 12px 6px 32px;border:0.5px solid var(--color-border-tertiary);border-radius:8px;background:var(--color-background-secondary);font-size:13px;color:var(--color-text-primary);width:200px}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--color-text-tertiary);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{padding:10px 16px;text-align:left;font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.04em;border-bottom:0.5px solid var(--color-border-tertiary)}
+tbody tr{border-bottom:0.5px solid var(--color-border-tertiary);transition:background 0.1s}
+tbody tr:hover{background:var(--color-background-secondary)}
+tbody tr:last-child{border-bottom:none}
+td{padding:10px 16px;color:var(--color-text-primary)}
+.chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
+.chip-green{background:#dcfce7;color:#166534}
+.chip-amber{background:#fef9c3;color:#854d0e}
+.chip-red{background:#fee2e2;color:#991b1b}
+.chip-blue{background:#dbeafe;color:#1e40af}
+.actions{display:flex;gap:6px}
+.icon-btn{width:28px;height:28px;border-radius:6px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--color-text-secondary);font-size:13px;transition:all 0.15s}
+.icon-btn:hover{background:var(--color-background-primary);border-color:var(--color-border-primary)}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--color-background-primary);border-radius:16px;padding:1.5rem;width:460px;max-width:90vw;border:0.5px solid var(--color-border-tertiary)}
+.modal-title{font-size:16px;font-weight:500;margin-bottom:1.25rem;color:var(--color-text-primary)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+.form-field{display:flex;flex-direction:column;gap:4px}
+.form-field.full{grid-column:1/-1}
+.form-label{font-size:12px;color:var(--color-text-secondary)}
+.form-field input,.form-field select{padding:7px 10px;border:0.5px solid var(--color-border-tertiary);border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-primary);font-size:13px}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:1rem}
+.progress-bar{height:4px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;transition:width 0.3s}
+.tab-bar{display:flex;gap:4px;padding:0 1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tab{padding:10px 14px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);border-bottom:2px solid transparent;margin-bottom:-0.5px}
+.tab.active{color:#4f46e5;border-bottom-color:#4f46e5}
+</style>
+
+<div class="app" id="app">
+  <aside class="sidebar">
+    <div class="logo"><div class="logo-icon">S</div> StockSense</div>
+    <div class="nav-section">
+      <div class="nav-label">Overview</div>
+      <div class="nav-item active" onclick="showTab('stock')">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2H3V4zm0 4h14v8a1 1 0 01-1 1H4a1 1 0 01-1-1V8z"/></svg>
+        Stock In
+      </div>
+      <div class="nav-item" onclick="showTab('sales')">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+        Sales Monitor
+      </div>
+      <div class="nav-item" onclick="showTab('products')">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4zm0 2a1 1 0 00-1 1v3.586l-1.707 1.707a1 1 0 001.414 1.414L11 14.414A1 1 0 0011 14V9a1 1 0 00-1-1z"/></svg>
+        Products
+      </div>
+    </div>
+    <div class="nav-section" style="margin-top:auto">
+      <div class="nav-label">Settings</div>
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+        Settings
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="page-title" id="page-title">Stock Inventory</div>
+        <div class="page-sub" id="page-sub">Monitor and manage all incoming stock</div>
+      </div>
+      <div style="display:flex;gap:8px">
+    <button class="btn btn-ghost" onclick="exportCSV()">↓ Export</button>
+    <button class="btn btn-primary" onclick="openModal()">+ Add Product</button>
+    <button class="btn btn-primary" onclick="saveInventory()">💾 Save</button>
+</div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Products</div>
+        <div class="stat-val" id="stat-total">8</div>
+        <div class="stat-badge badge-up">↑ 2 this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Packets</div>
+        <div class="stat-val" id="stat-packets">47,690</div>
+        <div class="stat-badge badge-up">↑ 12% vs last month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Low Stock Items</div>
+        <div class="stat-val" id="stat-low" style="color:#dc2626">2</div>
+        <div class="stat-badge badge-down">Needs restock</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Sales</div>
+        <div class="stat-val" id="stat-sales">₹0</div>
+        <div class="stat-badge badge-up">Log sales to track</div>
+      </div>
+    </div>
+
+    <div class="section" id="tab-stock">
+      <div class="section-header">
+        <div class="section-title">Stock In — All Entries</div>
+        <div class="toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search product..." id="search-input" oninput="filterTable()">
+          </div>
+          <select class="btn btn-ghost" id="filter-weight" onchange="filterTable()" style="padding:6px 10px;font-size:13px">
+            <option value="">All weights</option>
+            <option value="250 gm">250 gm</option>
+            <option value="100 gm">100 gm</option>
+            <option value="1 kg">1 kg</option>
+          </select>
+        </div>
+      </div>
+      <table id="stock-table">
+        <thead><tr>
+          <th>Stock ID</th><th>Product Code</th><th>Product Name</th><th>Weight</th>
+          <th>Cartons</th><th>Packets/Carton</th><th>Total Packets</th><th>Status</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="stock-body"></tbody>
+      </table>
+    </div>
+
+    <div class="section" id="tab-sales" style="display:none">
+      <div class="section-header">
+        <div class="section-title">Sales Monitor</div>
+        <button class="btn btn-primary" onclick="openSaleModal()">+ Log Sale</button>
+      </div>
+      <table>
+        <thead><tr><th>Date</th><th>Product</th><th>Qty Sold</th><th>Revenue</th><th>Stock Left</th></tr></thead>
+        <tbody id="sales-body"><tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--color-text-secondary)">No sales logged yet. Click "+ Log Sale" to add one.</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="section" id="tab-products" style="display:none">
+      <div class="section-header">
+        <div class="section-title">Product Catalog</div>
+      </div>
+      <div id="product-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:1rem"></div>
+    </div>
+  </main>
+</div>
+
+<div class="modal-bg" id="add-modal">
+  <div class="modal">
+    <div class="modal-title">Add New Stock Entry</div>
+    <div class="form-grid">
+      <div class="form-field"><label class="form-label">Product Name</label><input id="f-name" placeholder="e.g. Alu Bhujia"></div>
+      <div class="form-field"><label class="form-label">Product Code</label><input id="f-code" placeholder="e.g. P-1234"></div>
+      <div class="form-field"><label class="form-label">Weight</label>
+        <select id="f-weight"><option>250 gm</option><option>100 gm</option><option>1 kg</option><option>500 gm</option><option>2 kg</option></select>
+      </div>
+      <div class="form-field"><label class="form-label">Cartons</label><input type="number" id="f-cartons" placeholder="e.g. 15" min="1"></div>
+      <div class="form-field"><label class="form-label">Packets per Carton</label><input type="number" id="f-packets" placeholder="e.g. 50" min="1"></div>
+      <div class="form-field"><label class="form-label">Unit Price (₹)</label><input type="number" id="f-price" placeholder="e.g. 20" min="1"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="addEntry()">Add to Inventory</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="sale-modal">
+  <div class="modal">
+    <div class="modal-title">Log a Sale</div>
+    <div class="form-grid">
+      <div class="form-field full"><label class="form-label">Product</label>
+        <select id="s-product"></select>
+      </div>
+      <div class="form-field"><label class="form-label">Packets Sold</label><input type="number" id="s-qty" placeholder="e.g. 100" min="1"></div>
+      <div class="form-field"><label class="form-label">Sale Price per Packet (₹)</label><input type="number" id="s-price" placeholder="e.g. 25" min="1"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeSaleModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="logSale()">Log Sale</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let inventory = [
+  {id:'ST-328879',code:'P-9182',name:'Alu Bhujia',weight:'250 gm',cartons:15,packets:50,price:20},
+  {id:'ST-759343',code:'P-4751',name:'Alu Bhujia',weight:'100 gm',cartons:9,packets:60,price:12},
+  {id:'ST-134177',code:'P-6784',name:'Bhujia Sev',weight:'1 kg',cartons:12,packets:50,price:80},
+  {id:'ST-541763',code:'P-6784',name:'Bhujia Sev',weight:'1 kg',cartons:70,packets:60,price:80},
+  {id:'ST-783626',code:'P-4829',name:'Mixture',weight:'250 gm',cartons:50,packets:200,price:25},
+  {id:'ST-785686',code:'P-4829',name:'Mixture',weight:'250 gm',cartons:190,packets:160,price:25},
+  {id:'ST-112652',code:'P-2228',name:'Moong dal',weight:'250 gm',cartons:5,packets:40,price:18},
+  {id:'ST-589175',code:'P-2228',name:'Moong dal',weight:'250 gm',cartons:20,packets:60,price:18},
+];
+let sales = [];
+let totalRevenue = 0;
+
+function getTotal(item){return item.cartons*item.packets}
+function getStatus(item){
+  const t=getTotal(item);
+  if(t<250) return '<span class="chip chip-red">Low Stock</span>';
+  if(t<600) return '<span class="chip chip-amber">Limited</span>';
+  return '<span class="chip chip-green">In Stock</span>';
+}
+
+function renderTable(){
+  const search=document.getElementById('search-input').value.toLowerCase();
+  const fw=document.getElementById('filter-weight').value;
+  const rows=inventory.filter(i=>{
+    const match=(i.name.toLowerCase().includes(search)||i.code.toLowerCase().includes(search)||i.id.toLowerCase().includes(search));
+    const wMatch=fw?i.weight===fw:true;
+    return match&&wMatch;
+  });
+  const t=document.getElementById('stock-body');
+  t.innerHTML=rows.map((i,idx)=>`<tr>
+    <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-secondary)">${i.id}</span></td>
+    <td><span class="chip chip-blue">${i.code}</span></td>
+    <td style="font-weight:500">${i.name}</td>
+    <td>${i.weight}</td>
+    <td>${i.cartons}</td>
+    <td>${i.packets}</td>
+    <td style="font-weight:500">${getTotal(i).toLocaleString()}</td>
+    <td>${getStatus(i)}</td>
+    <td><div class="actions">
+      <button class="icon-btn" title="Delete" onclick="deleteEntry(${inventory.indexOf(i)})">✕</button>
+    </div></td>
+  </tr>`).join('');
+  updateStats();
+  renderProducts();
+}
+
+function filterTable(){renderTable()}
+
+function updateStats(){
+  document.getElementById('stat-total').textContent=inventory.length;
+  const tp=inventory.reduce((a,i)=>a+getTotal(i),0);
+  document.getElementById('stat-packets').textContent=tp.toLocaleString();
+  const low=inventory.filter(i=>getTotal(i)<600).length;
+  document.getElementById('stat-low').textContent=low;
+  document.getElementById('stat-sales').textContent='₹'+Math.round(totalRevenue).toLocaleString();
+}
+
+function renderProducts(){
+  const names=[...new Set(inventory.map(i=>i.name))];
+  const el=document.getElementById('product-cards');
+  el.innerHTML=names.map(n=>{
+    const items=inventory.filter(i=>i.name===n);
+    const tot=items.reduce((a,i)=>a+getTotal(i),0);
+    const pct=Math.min(100,Math.round(tot/500*100));
+    const col=pct>60?'#4ade80':pct>30?'#fbbf24':'#f87171';
+    return`<div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem">
+      <div style="font-weight:500;margin-bottom:4px">${n}</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:8px">${items.length} SKU${items.length>1?'s':''} · ${tot.toLocaleString()} pkts</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${col}"></div></div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">${pct}% stocked</div>
+    </div>`;
+  }).join('');
+}
+
+function openModal(){document.getElementById('add-modal').classList.add('open')}
+function closeModal(){document.getElementById('add-modal').classList.remove('open')}
+
+function addEntry(){
+  const name=document.getElementById('f-name').value.trim();
+  const code=document.getElementById('f-code').value.trim();
+  const weight=document.getElementById('f-weight').value;
+  const cartons=parseInt(document.getElementById('f-cartons').value)||0;
+  const packets=parseInt(document.getElementById('f-packets').value)||0;
+  const price=parseFloat(document.getElementById('f-price').value)||0;
+  if(!name||!code||!cartons||!packets){alert('Please fill all required fields.');return;}
+  const id='ST-'+Math.floor(100000+Math.random()*900000);
+  inventory.push({id,code,name,weight,cartons,packets,price});
+  closeModal();
+  ['f-name','f-code','f-cartons','f-packets','f-price'].forEach(id=>{document.getElementById(id).value=''});
+  renderTable();
+}
+
+function deleteEntry(idx){
+  if(confirm('Remove this stock entry?')){inventory.splice(idx,1);renderTable();}
+}
+
+function showTab(t){
+  ['stock','sales','products'].forEach(k=>{
+    document.getElementById('tab-'+k).style.display=k===t?'block':'none';
+    document.querySelectorAll('.nav-item').forEach((el,i)=>{
+      if(['stock','sales','products'][i]===t) el.classList.add('active');
+      else el.classList.remove('active');
+    });
+  });
+  const titles={stock:['Stock Inventory','Monitor and manage all incoming stock'],sales:['Sales Monitor','Track product sales and revenue'],products:['Product Catalog','Overview of all products in inventory']};
+  document.getElementById('page-title').textContent=titles[t][0];
+  document.getElementById('page-sub').textContent=titles[t][1];
+  if(t==='sales')renderSales();
+  if(t==='products')renderProducts();
+}
+
+function openSaleModal(){
+  const sel=document.getElementById('s-product');
+  const names=[...new Set(inventory.map(i=>i.name))];
+  sel.innerHTML=names.map(n=>`<option>${n}</option>`).join('');
+  document.getElementById('sale-modal').classList.add('open');
+}
+function closeSaleModal(){document.getElementById('sale-modal').classList.remove('open')}
+
+function logSale(){
+  const prod=document.getElementById('s-product').value;
+  const qty=parseInt(document.getElementById('s-qty').value)||0;
+  const price=parseFloat(document.getElementById('s-price').value)||0;
+  if(!qty||!price){alert('Please enter quantity and price.');return;}
+  const rev=qty*price;
+  totalRevenue+=rev;
+  const date=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  const remaining=inventory.filter(i=>i.name===prod).reduce((a,i)=>a+getTotal(i),0)-qty;
+  sales.unshift({date,prod,qty,rev,remaining:Math.max(0,remaining)});
+  closeSaleModal();
+  document.getElementById('s-qty').value='';
+  document.getElementById('s-price').value='';
+  renderSales();
+  updateStats();
+}
+
+function renderSales(){
+  const el=document.getElementById('sales-body');
+  if(!sales.length){el.innerHTML='<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--color-text-secondary)">No sales yet. Click "+ Log Sale" to add one.</td></tr>';return;}
+  el.innerHTML=sales.map(s=>`<tr>
+    <td style="color:var(--color-text-secondary)">${s.date}</td>
+    <td style="font-weight:500">${s.prod}</td>
+    <td>${s.qty.toLocaleString()}</td>
+    <td style="color:#166534;font-weight:500">₹${Math.round(s.rev).toLocaleString()}</td>
+    <td><span class="chip ${s.remaining>500?'chip-green':s.remaining>100?'chip-amber':'chip-red'}">${s.remaining.toLocaleString()} pkts</span></td>
+  </tr>`).join('');
+}
+
+
+
+// ------------------ SAVE FUNCTION ------------------
+async function saveInventory() {
+    const rows = document.querySelectorAll('#stock-body tr');
+    let data = [];
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+
+        data.push({
+            id: cells[0].innerText,
+            code: cells[1].innerText,
+            name: cells[2].innerText,
+            weight: cells[3].innerText,
+            cartons: parseInt(cells[4].innerText),
+            packets: parseInt(cells[5].innerText),
+            price: 20
+        });
+    });
+
+    await fetch('/save_inventory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    alert("Inventory saved!");
+}
+
+function exportCSV(){
+  const rows=[['Stock ID','Product Code','Product Name','Weight','Cartons','Packets/Carton','Total Packets'],
+    ...inventory.map(i=>[i.id,i.code,i.name,i.weight,i.cartons,i.packets,getTotal(i)])
+  ];
+
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='inventory.csv';
+  a.click();
+}
+
+
+// ✅ LOAD FROM DATABASE ON PAGE LOAD
+window.onload = async function () {
+    const res = await fetch('/get_inventory');
+    const data = await res.json();
+
+    // 🔥 IMPORTANT: update your global inventory array
+    inventory = data;
+
+    // 🔥 NOW render table using DB data
+    renderTable();
+};
+</script>
