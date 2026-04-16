@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Small store AI System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f6f9 100%);
+        }
+        .navbar {
+            background: rgb(249, 249, 249);
+            padding: 18px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 2rem;
+            margin-right: 40px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .navbar-links a {
+            font-size: 1.25rem !important;
+            padding: 10px 22px !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">AI sales store</span>
+        <div class="navbar-links">
+            <a href="/" class="btn btn-outline-primary">Home</a>
+            <a href="/sales" class="btn btn-outline-dark">Sales</a>
+            <a href="/inventory_dashboard" class="btn btn-outline-info">Inventory</a>
+            <a href="/shop" class="btn btn-outline-success">Store</a>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </nav>
+
+    <div class="hero-section-custom">
+        <div class="hero-left-custom">
+            <div class="hero-topline"> 
+                <span style="color:#2879b3;">En</span><span style="color:#4bb6e0;">han</span><span style="color:#23a6e0;">ced</span>, <span style="color:#4bb6e0;">Efficient</span> &amp; <span style="color:#23a6e0;">Robust</span>
+            </div>
+            <div class="hero-title-custom">
+                <span style="font-size:3rem;vertical-align:middle;">✨</span>AI-Driven <span style="color:#2196cf;">Business Software</span><br>
+                <span style="font-weight:700;">Powering Retail, Wholesale,<br>Supermarkets, Multi-Store and<br>Franchise Brands</span>
+            </div>
+            <div class="hero-desc-custom">
+                Revolutionize your business with AI-powered business management software that simplifies operations and drives growth.
+            </div>
+        </div>
+        <div class="hero-right-custom">
+            <img src="/static/my shop.jpg" alt="Shop" class="hero-shop-img">
+        </div>
+    </div>
+
+    <style>
+    .hero-section-custom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1400px;
+        margin: 70px auto 0 auto;
+        padding: 0 30px 40px 30px;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+    .hero-left-custom {
+        flex: 1 1 500px;
+        min-width: 320px;
+        text-align: left;
+    }
+    .hero-topline {
+        font-size: 2.4rem;
+        font-weight: 500;
+        color: #23a6e0;
+        margin-bottom: 28px;
+    }
+    .hero-title-custom {
+        font-size: 3.8rem;
+        line-height: 1.13;
+        font-weight: 800;
+        color: #222;
+        margin-bottom: 28px;
+    }
+    .hero-desc-custom {
+        font-size: 1.45rem;
+        color: #170c25;
+        font-weight: 400;
+        max-width: 700px;
+    }
+    .hero-right-custom {
+        flex: 1 1 400px;
+        min-width: 260px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+     .hero-shop-img {
+        max-width: 600px;
+        min-width: 320px;
+        width: 100%;
+        height: 380px;
+        border-radius: 18px;
+        box-shadow: 0 6px 32px 0 rgba(31, 38, 135, 0.13);
+        object-fit: cover;
+    }
+    @media (max-width: 1000px) {
+        .hero-section-custom {
+            flex-direction: column;
+            gap: 30px;
+            padding: 0 10px 30px 10px;
+        }
+        .hero-left-custom, .hero-right-custom {
+            min-width: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .hero-title-custom {
+            font-size: 2.2rem;
+        }
+        .hero-topline {
+            font-size: 1.5rem;
+        }
+    }
+    </style>
+    </div>
+
+<!-- Sector Carousel Section -->
+<div class="sector-carousel-section">
+    <h2 class="sector-title">Enabling Growth Across Small Sectors</h2>
+    <div class="sector-subtitle">
+        Our solutions are built for every sector, helping you simplify operations and drive growth.
+    </div>
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-card">
+                <img src="/static/supermarket.jpg" alt="Supermarket">
+                <div class="carousel-label">SUPERMARKET</div>
+            </div>
+            <div class="carousel-card">
+                <img src="/static/garment.jpg" alt="Readymade Garment">
+                <div class="carousel-label">READYMADE GARMENT</div>
+            </div>
+            <div class="carousel-card">
+                <img src="/static/petstore.jpg" alt="Pet Store">
+                <div class="carousel-label">PET STORE</div>
+            </div>
+            <div class="carousel-card">
+                <img src="/static/stationery.jpg" alt="Stationery Store">
+                <div class="carousel-label">STATIONERY STORE</div>
+            </div>
+            <div class="carousel-card">
+                <img src="/static/grocery.jpg" alt="Grocery Store">
+                <div class="carousel-label">GROCERY STORE</div>
+            </div>
+            <div class="carousel-card">
+                <img src="/static/hypermart.jpg" alt="Hypermart">
+                <div class="carousel-label">HYPERMART</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.sector-carousel-section {
+    margin: 60px auto 0 auto;
+    max-width: 1400px;
+    text-align: center;
+}
+.sector-title {
+    color: #811599;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.sector-subtitle {
+    color: #310c0c;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+}
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 0 30px 0;
+}
+.carousel-track {
+    display: flex;
+    gap: 32px;
+    animation: scroll-carousel 30s linear infinite;
+}
+.carousel-card {
+    min-width: 340px;
+    max-width: 340px;
+    background: #222;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+    position: relative;
+    margin-bottom: 10px;
+}
+.carousel-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+.carousel-label {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 70%, transparent 100%);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 18px 0 10px 18px;
+    text-align: left;
+    letter-spacing: 1px;
+}
+@keyframes scroll-carousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+@media (max-width: 1100px) {
+    .carousel-card { min-width: 260px; max-width: 260px; }
+    .carousel-card img { height: 160px; }
+}
+@media (max-width: 700px) {
+    .carousel-card { min-width: 180px; max-width: 180px; }
+    .carousel-card img { height: 100px; }
+    .sector-title { font-size: 1.3rem; }
+    .sector-subtitle { font-size: 1rem; }
+}
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    // Duplicate cards for seamless infinite scroll
+    const track = document.getElementById('carouselTrack');
+    track.innerHTML += track.innerHTML;
+});
+</script>
+</div>
+
+<!-- Benefits Section -->
+<div class="benefits-section">
+    <h2 class="benefits-title">The Benefits Of AI Sales Store Are Numerous</h2>
+    <div class="benefits-subtitle">Let’s have a cup of coffee!</div>
+    <div class="benefits-cards">
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/customer-service.jpg" alt="Customer Service" />
+            </div>
+            <div class="benefit-header">Better Customer Service</div>
+            <div class="benefit-desc">Manage customer information, track their purchases, and communicate with them through the platform, which can improve customer satisfaction and help build loyalty.</div>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/scalability.jpg" alt="Scalability" />
+            </div>
+            <div class="benefit-header">Scalability</div>
+            <div class="benefit-desc">Manage multiple stores from one location and get a unified view of your business with real-time insights, helping you scale your business more efficiently.</div>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/efficiency.jpg" alt="Efficiency" />
+            </div>
+            <div class="benefit-header">Increased Efficiency</div>
+            <div class="benefit-desc">Easily track inventory, manage sales, and make data-driven decisions, saving you time and effort.</div>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/inventory.png" alt="Inventory" />
+            </div>
+            <div class="benefit-header">Better Inventory</div>
+            <div class="benefit-desc">Keep your inventory up-to-date, reduce stockouts, and optimize stock levels for better business performance.</div>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/sales.png" alt="Sales" />
+            </div>
+            <div class="benefit-header">Improved Sales</div>
+            <div class="benefit-desc">Boost your sales with targeted promotions, customer insights, and streamlined sales processes.</div>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon">
+                <img src="/static/insights.png" alt="Insights" />
+            </div>
+            <div class="benefit-header">Greater Insights</div>
+            <div class="benefit-desc">Gain actionable insights from your data to make smarter business decisions and stay ahead of the competition.</div>
+        </div>
+    </div>
+</div>
+
+<style>
+.benefits-section {
+    max-width: 1400px;
+    margin: 70px auto 0 auto;
+    text-align: center;
+    padding: 0 20px 60px 20px;
+}
+.benefits-title {
+    color: #222;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.benefits-subtitle {
+    color: #888;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+}
+.benefits-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+}
+.benefit-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
+    padding: 36px 28px 28px 28px;
+    max-width: 340px;
+    min-width: 260px;
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s;
+}
+.benefit-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13);
+}
+.benefit-icon img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 18px;
+}
+.benefit-header {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 10px;
+}
+.benefit-desc {
+    color: #666;
+    font-size: 1.08rem;
+    font-weight: 400;
+}
+@media (max-width: 1100px) {
+    .benefits-cards { gap: 18px; }
+    .benefit-card { max-width: 320px; min-width: 180px; padding: 28px 10px; }
+}
+@media (max-width: 700px) {
+    .benefits-cards { flex-direction: column; gap: 18px; }
+    .benefit-card { max-width: 100%; min-width: 0; }
+    .benefits-title { font-size: 1.3rem; }
+    .benefits-subtitle { font-size: 1rem; }
+}
+</style>
+</div>
+
+<!-- Why AI for Small Stores Section -->
+<div class="why-ai-section">
+    <div class="why-ai-container">
+        <div class="why-ai-left">
+            <h2 class="why-ai-title">Why AI for Small Stores?</h2>
+            <div class="why-ai-q">Are you struggling to manage stock, sales, and customers manually?</div>
+            <div class="why-ai-q">Are missed sales, overstock, or low inventory affecting your profits?</div>
+            <div class="why-ai-q">Is it hard to keep track of your shop when you're not physically there?</div>
+            <div class="why-ai-point">👉 Our AI-powered platform has got you covered!</div>
+            <div class="why-ai-desc">From small local shops to growing businesses, our solution helps you manage everything smarter and faster with:</div>
+            <ul class="why-ai-list">
+                <li><b>Smart Inventory Tracking</b> to avoid overstock and stockouts</li>
+                <li><b>AI Sales Insights</b> to understand what sells best and when</li>
+                <li><b>Easy Billing &amp; Digital Records</b> to simplify daily operations</li>
+                <li><b>Online Selling Support</b> to expand your business beyond your shop</li>
+                <li><b>Real-time Monitoring</b> to manage your store anytime, anywhere</li>
+            </ul>
+            <div class="why-ai-cta">🚀 Take your shop to the next level with intelligent automation designed for small businesses.</div>
+            <div class="why-ai-cta2">💡 Grow smarter, reduce losses, and increase profits with AI!</div>
+        </div>
+        <div class="why-ai-right">
+            <div class="why-ai-video-frame">
+                <!-- Replace with your own video or image if desired -->
+                <img src="/static/shop-inside.jpg" alt="Shop Video" class="why-ai-img" />
+                <div class="why-ai-play"><svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#23a6e0" opacity="0.9"/><polygon points="25,20 45,30 25,40" fill="#fff"/></svg></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.why-ai-section {
+    max-width: 1400px;
+    margin: 70px auto 0 auto;
+    padding: 0 20px 60px 20px;
+}
+.why-ai-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+    justify-content: center;
+}
+.why-ai-left {
+    flex: 1 1 480px;
+    min-width: 320px;
+    max-width: 650px;
+    text-align: left;
+}
+.why-ai-title {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 18px;
+}
+.why-ai-q {
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+.why-ai-point {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #23a6e0;
+    margin: 18px 0 8px 0;
+}
+.why-ai-desc {
+    font-size: 1.08rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+.why-ai-list {
+    margin: 0 0 18px 0;
+    padding-left: 20px;
+    color: #444;
+    font-size: 1.08rem;
+}
+.why-ai-list li {
+    margin-bottom: 7px;
+}
+.why-ai-cta {
+    font-size: 1.13rem;
+    color: #23a6e0;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.why-ai-cta2 {
+    font-size: 1.13rem;
+    color: #219150;
+    font-weight: 600;
+}
+.why-ai-right {
+    flex: 1 1 340px;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.why-ai-video-frame {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px 0 rgba(35, 40, 250, 0.13);
+    border: 5px solid #23a6e0;
+    background: #fff;
+    width: 600px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.why-ai-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.why-ai-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+}
+@media (max-width: 1100px) {
+    .why-ai-container { flex-direction: column; gap: 30px; }
+    .why-ai-right, .why-ai-left { max-width: 100%; }
+    .why-ai-video-frame { width: 200%; max-width: 420px; height: 400px; }
+}
+@media (max-width: 900px) {
+    .why-ai-title { font-size: 1.3rem; }
+    .why-ai-q, .why-ai-desc, .why-ai-list, .why-ai-cta, .why-ai-cta2 { font-size: 1rem; }
+    .why-ai-video-frame { height: 170px; }
+}
+</style>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+    <h2 class="faq-title">FAQ! Need Help?</h2>
+    <div class="faq-subtitle">We've got you covered</div>
+    <div class="faq-tabs">
+        <button class="faq-tab active" onclick="showFaqTab(0)">General</button>
+        <button class="faq-tab" onclick="showFaqTab(1)">Inventory & Sales</button>
+        <button class="faq-tab" onclick="showFaqTab(2)">Store Features</button>
+        <button class="faq-tab" onclick="showFaqTab(3)">Online & Support</button>
+    </div>
+    <div class="faq-content">
+        <div class="faq-list" id="faq-list-0">
+            <div class="faq-item"><div class="faq-q">Is the AI Sales Store platform suitable for small shops?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Can I use the system without technical expertise?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Is my data safe and private?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Can I access my shop data from my phone?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">How do I get started?</div><div class="faq-plus">+</div></div>
+        </div>
+        <div class="faq-list" id="faq-list-1" style="display:none;">
+            <div class="faq-item"><div class="faq-q">How does AI help with inventory management?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Will the system alert me about low stock or overstock?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Can I track sales trends and best-selling products?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Does it support barcode scanning?</div><div class="faq-plus">+</div></div>
+        </div>
+        <div class="faq-list" id="faq-list-2" style="display:none;">
+            <div class="faq-item"><div class="faq-q">What features does the platform offer for store management?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">How does AI help improve my store performance?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">How do I view daily, weekly, or monthly sales reports?</div><div class="faq-plus">+</div></div>
+        </div>
+        <div class="faq-list" id="faq-list-3" style="display:none;">
+            <div class="faq-item"><div class="faq-q">Can I sell online using this platform?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">Is there customer support if I face issues?</div><div class="faq-plus">+</div></div>
+            <div class="faq-item"><div class="faq-q">How do I update or upgrade my plan?</div><div class="faq-plus">+</div></div>
+        </div>
+    </div>
+</div>
+
+<style>
+.faq-section {
+    max-width: 1400px;
+    margin: 70px auto 0 auto;
+    padding: 0 20px 60px 20px;
+    text-align: center;
+}
+.faq-title {
+    color: #222;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+.faq-subtitle {
+    color: #888;
+    font-size: 1.5rem;
+    margin-bottom: 2.2rem;
+}
+.faq-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 38px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+.faq-tab {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #23a6e0;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: border 0.2s, color 0.2s;
+}
+.faq-tab.active {
+    color: #0a3a5c;
+    border-bottom: 3px solid #23a6e0;
+}
+.faq-content {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+.faq-list {
+    flex: 1 1 420px;
+    max-width: 520px;
+    text-align: left;
+}
+.faq-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 4px solid #23a6e0;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    padding: 18px 22px;
+    font-size: 1.13rem;
+    font-weight: 500;
+    color: #222;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.faq-q {
+    flex: 1;
+}
+.faq-plus {
+    color: #23a6e0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-left: 18px;
+    cursor: pointer;
+}
+@media (max-width: 1100px) {
+    .faq-content { gap: 18px; }
+    .faq-list { max-width: 100%; }
+}
+@media (max-width: 700px) {
+    .faq-title { font-size: 1.8rem; }
+    .faq-subtitle { font-size: 1.2rem; }
+    .faq-tab { font-size: 1.2rem; }
+    .faq-item { font-size: 1rem; padding: 12px 10px; }
+}
+</style>
+<script>
+function showFaqTab(idx) {
+    const tabs = document.querySelectorAll('.faq-tab');
+    const lists = [
+        document.getElementById('faq-list-0'),
+        document.getElementById('faq-list-1'),
+        document.getElementById('faq-list-2'),
+        document.getElementById('faq-list-3')
+    ];
+    tabs.forEach((tab, i) => {
+        if (i === idx) {
+            tab.classList.add('active');
+            lists[i].style.display = '';
+        } else {
+            tab.classList.remove('active');
+            lists[i].style.display = 'none';
+        }
+    });
+}
+</script>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.ft-wrap { background: #2a2a2a; color: #ccc; font-family: Arial, sans-serif; font-size: 13px; }
+.ft-top { background: #222; padding: 22px 60px; display: flex; align-items: center; gap: 60px; flex-wrap: wrap; border-bottom: 1px solid #3a3a3a; }
+.ft-top-label { color: #aaa; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+.ft-pay-icons { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ft-pay-badge { background: #fff; border-radius: 4px; padding: 5px 10px; font-size: 12px; font-weight: 700; color: #222; white-space: nowrap; }
+.ft-pay-badge.visa { color: #1a1f71; font-style: italic; font-size: 14px; }
+.ft-pay-badge.pp { color: #003087; }
+.ft-pay-badge.apple { color: #000; }
+.ft-dhl { display: flex; align-items: center; gap: 14px; }
+.ft-dhl-logo { display: flex; flex-direction: column; }
+.ft-dhl-logo span:first-child { color: #fc0; font-weight: 900; font-size: 20px; letter-spacing: -1px; font-style: italic; }
+.ft-dhl-logo span:last-child { color: #4caf50; font-weight: 700; font-size: 11px; letter-spacing: 2px; }
+.ft-dhl-text { color: #aaa; font-size: 11px; line-height: 1.5; }
+.ft-main { padding: 40px 60px 30px; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 40px; }
+.ft-col-title { color: #aaa; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 16px; }
+.ft-col a { display: block; color: #bbb; text-decoration: underline; margin-bottom: 8px; font-size: 13px; }
+.ft-col a:hover { color: #fff; }
+.ft-col .ft-spacer { height: 14px; }
+.ft-social { display: flex; gap: 16px; margin-bottom: 22px; }
+.ft-social-icon { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #555; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.ft-social-icon svg { width: 16px; height: 16px; fill: #bbb; }
+.ft-signup-label { color: #aaa; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 10px; }
+.ft-signup-text { color: #bbb; font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+.ft-signup-form { display: flex; }
+.ft-email-input { flex: 1; padding: 10px 14px; background: #fff; border: none; font-size: 13px; color: #333; outline: none; }
+.ft-send-btn { background: #333; color: #fff; border: none; padding: 10px 18px; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; }
+.ft-send-btn:hover { background: #555; }
+.ft-bottom { border-top: 1px solid #3a3a3a; padding: 14px 60px; display: flex; align-items: center; gap: 30px; }
+.ft-bottom a { color: #888; text-decoration: underline; font-size: 12px; }
+.ft-bottom-copy { color: #666; font-size: 12px; }
+@media (max-width: 700px) {
+  .ft-top { padding: 18px 20px; gap: 30px; }
+  .ft-main { padding: 28px 20px; grid-template-columns: 1fr; gap: 28px; }
+  .ft-bottom { padding: 14px 20px; flex-wrap: wrap; gap: 10px; }
+}
+</style>
+
+<footer class="ft-wrap">
+  <!-- Top bar: Payment + Shipping -->
+  <div class="ft-top">
+    <div>
+      <div class="ft-top-label">Secure payment options</div>
+      <div class="ft-pay-icons">
+        <div class="ft-pay-badge visa">VISA</div>
+        <div class="ft-pay-badge" style="background:#eb001b; position:relative; width:38px; height:24px; border-radius:4px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#eb001b;position:absolute;left:2px;"></div>
+          <div style="width:22px;height:22px;border-radius:50%;background:#f79e1b;position:absolute;right:2px;opacity:0.9;"></div>
+        </div>
+        <div class="ft-pay-badge pp">PayPal</div>
+        <div class="ft-pay-badge" style="background:#009a6e; color:#fff; font-size:11px;">SOFORT</div>
+        <div class="ft-pay-badge" style="font-size:11px; letter-spacing:1px;">VORKASSE</div>
+        <div class="ft-pay-badge apple">&#63743; Pay</div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Main footer columns -->
+  <div class="ft-main">
+    <div class="ft-col">
+      <div class="ft-col-title">Help &amp; Information</div>
+      <a href="#">FAQ</a>
+      <a href="#">Delivery &amp; Shipping</a>
+      <a href="#">Returns &amp; Exchanges</a>
+      <div class="ft-spacer"></div>
+      <a href="#">Cancellation</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Imprint</a>
+      <a href="#">Sitemap</a>
+    </div>
+
+    <div class="ft-col">
+      <div class="ft-col-title">Pages</div>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">Story</a>
+      <a href="#">Journal</a>
+      <a href="#">Contact</a>
+      <div class="ft-spacer"></div>
+      <div class="ft-col-title">Account</div>
+      <a href="#">My Account</a>
+      <a href="#">Orders</a>
+    </div>
+
+    <div class="ft-col">
+      <div class="ft-col-title">Social Media</div>
+      <div class="ft-social">
+        <div class="ft-social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#bbb"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div class="ft-social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#bbb" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#bbb"/></svg>
+        </div>
+        <div class="ft-social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#bbb"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#2a2a2a"/></svg>
+        </div>
+        <div class="ft-social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#bbb"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+        </div>
+      </div>
+
+      <div class="ft-signup-label">Sign Up</div>
+      <div class="ft-signup-text">Subscribe to our newsletter to be informed about new products and get insights into our design process.</div>
+      <div class="ft-signup-form">
+        <input class="ft-email-input" type="email" placeholder="E-Mail Address" />
+        <button class="ft-send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="ft-bottom">
+    <a href="#">Change language: English</a>
+    <span class="ft-bottom-copy">Copyright &copy; 2024. A modern fashion brand. All rights reserved.</span>
+  </div>
+</footer>
+</body>
+</html>

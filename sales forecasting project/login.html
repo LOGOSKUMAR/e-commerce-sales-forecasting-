@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login Page</title>
+    <style>
+        /* Base Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #24243e; /* Dark navy background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* The Card */
+        .login-card {
+            background-color: #1a1a2e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 380px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Input Groups */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #b0b0b0;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #303056;
+            background-color: #16162a;
+            color: #ffffff;
+            box-sizing: border-box;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #7f5af0;
+        }
+
+        /* Options Row (Remember Me & Forgot Password) */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            color: #b0b0b0;
+            cursor: pointer;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+            accent-color: #7f5af0;
+        }
+
+        .forgot-password {
+            color: #7f5af0;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #7f5af0, #4f46e5);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Register Footer */
+        .footer-text {
+            margin-top: 25px;
+            text-align: center;
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: #7f5af0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Login</h2>
+        
+        <form method="post" action="/login">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="options">
+                <label class="remember-me">
+                    <input type="checkbox" name="remember"> Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="footer-text">
+            Don't have an account? <a href="/register">Register</a>
+        </div>
+    </div>
+
+</body>
+</html>
